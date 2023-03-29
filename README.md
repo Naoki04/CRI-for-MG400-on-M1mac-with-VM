@@ -36,10 +36,12 @@ Go to Network settings on your macbook. Set your EathaNet network IPv4 adress on
 ![image](images/network.png)
 
 ### 2.7 Launch Dobot Studio Pro and Connect to MG400
-You will find your MG400 with IP adress "192.168.1.6".
+You will find your MG400 with IP adress "192.168.1.6". If you cannot find it, try to reboot Dubot Studio Pro.
+![image](images/connect.png)
 
 ### 2.8 Check Connection
-After you push "Enable" bottun, you can control your robot with interface on the bottom right.
+After you push "Enable" bottun on top right, you can control your robot with interface on the bottom right.
+
 ---
 
 ## 3. Install CRI
@@ -56,13 +58,47 @@ We need C++ Build Tool to install Pybullet. Install it with "desktop envirionmen
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
 ### 3.4 Install CRI
-python setup.py install
-pip install -e .
-pip install pybullet
-pip install opencv-python
-pip install numpy
-pip install pyqt5
+I'm not perfectly understand how these installation working, but these are what I executed.
+```
+$ python setup.py install
+$ pip install -e .
+$ pip install pybullet
+$ pip install opencv-python
+$ pip install numpy
+$ pip install pyqt5
+```
 
-### Install TactileGym
+### 3.5 Install TactileGym
+https://github.com/ac-93/tactile_gym
 
-## Run Test
+```
+$ cd ../
+$ cd tactile_gym_2
+$ git clone https://github.com/yijionglin/tactile_gym_2
+$ cd tactile_gym
+$ python setup.py install
+$ cd  ../cri
+```
+---
+## 4. Run Test
+Then, the robot is ready to run!
+```
+$ python examples\mg400_robot_test.py
+```
+
+
+# How to control Digital Output via CRI
+CRI Client looks not supporting Digital Output Control. You can control it by the code below, should be in "examples\mg400_robot_test.py"
+```
+# Test Robot Movement
+robot.move_linear((0, 0, 0, 0, 0, 0))
+
+# Test Digital Output
+robot.controller._client._dashboard.DO(9,1)
+time.sleep(1)
+robot.controller._client._dashboard.DO(9,0)
+time.sleep(1)
+robot.controller._client._dashboard.DO(10,1)
+time.sleep(1)
+robot.controller._client._dashboard.DO(10,0)
+```
