@@ -42,6 +42,9 @@ You will find your MG400 with IP adress "192.168.1.6". If you cannot find it, tr
 ### 2.8 Check Connection
 After you push "Enable" bottun on top right, you can control your robot with interface on the bottom right.
 
+### 2.9 Install Git
+https://gitforwindows.org/
+
 ---
 
 ## 3. Install CRI
